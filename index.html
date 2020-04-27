@@ -27,8 +27,8 @@ var flock;
 function setup() {
   var width = 1280;
   var height = 720;
-  var num_boids = 500;
-  //var num_boids = 100;
+  //var num_boids = 500;
+  var num_boids = 100;
   //var num_boids = 10;
   //var num_boids = 1;
   var canvas = createCanvas(width, height);
@@ -83,17 +83,15 @@ function Boid(x,y) {
     var sep = this.separate(boids);   // Separation
     var ali = this.align(boids);      // Alignment
     var coh = this.cohesion(boids);   // Cohesion
-    var wal = this.avoidwall(boids);
     // Arbitrarily weight these forces
-    sep.mult(3.5);
+    sep.mult(2.0);
     ali.mult(1.0);
-    coh.mult(2.0);
+    coh.mult(0.7);
     //wal.mult(10.0);
     // Add the force vectors to acceleration
     this.applyForce(sep);
     this.applyForce(ali);
     this.applyForce(coh);
-    this.applyForce(wal);
   }
 
   // Method to update location
